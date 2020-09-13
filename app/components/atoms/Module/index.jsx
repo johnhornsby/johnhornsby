@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 const ModuleStyled = styled.div`
   & + & {
-    margin-top: 5rem;
+    margin-top: 4rem;
   }
 `;
 

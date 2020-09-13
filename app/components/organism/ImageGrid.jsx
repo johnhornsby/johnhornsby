@@ -7,16 +7,12 @@ import { wide } from '../../styles/config/aspect-ratio';
 const spacingModifier = 0.5;
 
 const SectionStyled = styled.section`
-  display: flex;
-  flex-wrap: wrap;
-  margin-left: calc(var(--spacing) * -${spacingModifier});
-  margin-right: calc(var(--spacing) * -${spacingModifier});
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: calc(var(--spacing) * ${spacingModifier});
 `;
 
-const ImageWrapperStyled = styled.div`
-  width: 25%;
-  padding: calc(var(--spacing) * ${spacingModifier});
-`;
+const ImageWrapperStyled = styled.div``;
 
 const ImageAspectRatioStyled = styled.div`
   position: relative;

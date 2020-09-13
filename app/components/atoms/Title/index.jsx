@@ -9,6 +9,7 @@ const propTypes = {
   below: PropTypes.string,
   color: PropTypes.string,
   children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
+  lineHeight: PropTypes.string,
   scale: PropTypes.string,
   tag: PropTypes.number,
   weight: PropTypes.number,
@@ -18,7 +19,6 @@ const defaultProps = {
   above: '0rem',
   tag: 1,
   below: '0.66rem',
-  weight: '700',
 };
 
 const Title = ({ tag, ...props }) => {

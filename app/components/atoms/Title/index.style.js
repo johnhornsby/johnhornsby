@@ -6,9 +6,11 @@ const title = css`
   margin: 0;
   margin-top: ${({ above }) => above};
   margin-bottom: ${({ below }) => below};
-  font-family: ${(p) => p.theme.typography.titleFontFamily};
-  font-weight: ${(p) => p.theme.typography.titleFontWeight};
-  line-height: ${(p) => p.theme.typography.titleLineHeight};
+  font-family: ${({ theme }) => theme.typography.titleFontFamily};
+  ${({ weight, theme }) => `font-weight: ${weight ? weight : theme.typography.titleFontWeight};`};
+  ${({ lineHeight, theme }) =>
+    `line-height: ${lineHeight ? lineHeight : theme.typography.titleLineHeight};`};
+  ${({ color, theme }) => `color: ${color ? color : theme.colors.black};`};
   ${({ scale }) => fontSize(scale)}
   text-transform: uppercase;
 `;

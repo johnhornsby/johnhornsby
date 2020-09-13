@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 
 import gql from 'graphql-tag';
 import { useQuery } from '@apollo/react-hooks';
@@ -16,6 +15,7 @@ import { fontSize, GAMMA } from '../../styles/config/modular-scale';
 import Title from '../../components/atoms/Title';
 import BodyCopy from '../../components/atoms/BodyCopy';
 import Module from '../../components/atoms/Module';
+import Tags from '../../components/atoms/Tags';
 
 const QUERY = gql`
   query($slug: String) {
@@ -47,28 +47,6 @@ const QUERY = gql`
   }
 `;
 
-const TitleStyled = styled(Title)`
-  /* padding: 0.75rem; */
-  /* width: auto; */
-
-  /* background: #ffffff; */
-  /* font-weight: 700; */
-
-  /* text-transform: uppercase; */
-  /* ${fontSize(GAMMA)} */
-`;
-
-const StrapStyled = styled.h6`
-  /* margin-top: -0.75rem; */
-  /* padding: 0.75rem 0.75rem 0.65rem 0.75rem; */
-  width: auto;
-
-  background: #ffffff;
-  font-weight: 400;
-  font-size: 0.8em;
-  text-transform: uppercase;
-`;
-
 const Project = () => {
   const router = useRouter();
   const { slug } = router.query;
@@ -81,6 +59,9 @@ const Project = () => {
   }
 
   const project = data.allProjects[0];
+  const hasCompletedAt = project.strap && project.completedAt;
+  const hasMediums = !!project.mediums && !!project.mediums.length;
+  const hasTechnologies = !!project.technologies && !!project.technologies.length;
 
   return (
     <Container>
@@ -89,35 +70,22 @@ const Project = () => {
       </Link>
       {project && (
         <>
-          {project.title && (
-            <Title above="4rem" below="0">
-              {project.title}
-            </Title>
-          )}
-
-          {project.strap && <StrapStyled>{project.strap}</StrapStyled>}
           <Module>
-            {project.completedAt && (
-              <time dateTime={project.completedAt.substr(0, 10)}>
-                {new Date(project.completedAt).toString()}
-              </time>
+            {project.title && (
+              <Title scale={'alpha'} above="12rem" below="0" lineHeight="1em">
+                {project.title}
+              </Title>
             )}
 
-            {project.mediums && project.mediums.length && (
-              <ul>
-                {project.mediums.map((m) => (
-                  <li key={m.name}>{m.name}</li>
-                ))}
-              </ul>
+            {hasCompletedAt && (
+              <Title tag={5} weight="400" color={'#333'} above="0">
+                {String(new Date(project.completedAt).getFullYear()).substr(2, 2)}
+                &nbsp;&nbsp;
+                {project.strap}
+              </Title>
             )}
-
-            {project.technologies && project.technologies.length && (
-              <ul>
-                {project.technologies.map((t) => (
-                  <li key={t.name}>{t.name}</li>
-                ))}
-              </ul>
-            )}
+            {hasMediums && <Tags label="Medium" tags={project.mediums} />}
+            {hasTechnologies && <Tags label="Technology" tags={project.technologies} />}
           </Module>
 
           {project.brief && (

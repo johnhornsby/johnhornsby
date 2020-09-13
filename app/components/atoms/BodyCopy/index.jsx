@@ -4,7 +4,7 @@ import { fontSize, EPSILON } from '../../../styles/config/modular-scale';
 
 const DivStyled = styled.div`
   ${fontSize(EPSILON)}
-  line-height: ${(p) => p.theme.typography.baseLineHeight};
+  line-height: ${({ theme }) => theme.typography.baseLineHeight};
 
   & p {
     margin-bottom: 1.75rem;
