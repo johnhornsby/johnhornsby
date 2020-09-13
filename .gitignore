@@ -1,0 +1,23 @@
+# System
+._*
+.DS_Store
+._.DS_Store
+
+# Editor
+*.code-workspace
+
+# Package managers
+node_modules/
+npm-debug.log
+
+# Compiled files
+dist/
+
+# Environment
+.env
+ssl/
+
+# Temp
+.sass-cache/
+stats.json
+.next

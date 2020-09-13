@@ -1,0 +1,44 @@
+{
+  "extends": "stylelint-config-standard",
+  "rules": {
+    "at-rule-empty-line-before": ["always", {
+      "except": ["first-nested"],
+      "ignore": ["after-comment"],
+      "ignoreAtRules": [
+        "else",
+        "error",
+        "import",
+        "include",
+        "return",
+        "warn"
+      ]
+    }],
+    "at-rule-no-unknown": [true, {
+      "ignoreAtRules": [
+        "at-root",
+        "content",
+        "debug",
+        "each",
+        "else",
+        "error",
+        "for",
+        "function",
+        "if",
+        "import",
+        "include",
+        "mixin",
+        "return",
+        "warn",
+        "while",
+        "extend",
+      ]
+    }],
+    "block-closing-brace-newline-after": ["always", {
+      "ignoreAtRules": [
+        "else",
+        "if"
+      ]
+    }],
+    "declaration-empty-line-before": "never"
+  }
+}

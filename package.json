@@ -1,0 +1,55 @@
+{
+  "name": "johnhornsby.co.uk",
+  "description": "Personal Site",
+  "private": true,
+  "version": "2.0.0",
+  "author": "johnhornsby8@gmail.com",
+  "repository": "https://github.com/keystonejs/keystone/tree/master/packages/create-keystone-app/example-projects/starter",
+  "homepage": "https://github.com/keystonejs/keystone",
+  "license": "MIT",
+  "engines": {
+    "node": ">=10.0.0"
+  },
+  "scripts": {
+    "debug": "node --inspect-brk ./node_modules/@keystonejs/keystone/bin/cli.js",
+    "dev": "cross-env NODE_ENV=development DISABLE_LOGGING=false keystone dev",
+    "build": "cross-env NODE_ENV=production keystone build",
+    "start": "cross-env NODE_ENV=production keystone start"
+  },
+  "dependencies": {
+    "@apollo/react-hooks": "^3.1.4",
+    "@apollo/react-ssr": "^3.1.4",
+    "@arch-ui/button": "0.0.20",
+    "@arch-ui/fields": "^3.0.2",
+    "@arch-ui/icons": "^0.1.1",
+    "@arch-ui/select": "^0.1.8",
+    "@arch-ui/theme": "0.0.10",
+    "@arch-ui/tooltip": "^0.1.12",
+    "@emotion/core": "^10.0.28",
+    "@keystonejs/adapter-mongoose": "^5.2.1",
+    "@keystonejs/app-admin-ui": "^5.9.2",
+    "@keystonejs/app-graphql": "^5.1.2",
+    "@keystonejs/app-next": "^5.1.2",
+    "@keystonejs/auth-password": "^5.1.2",
+    "@keystonejs/fields": "^7.0.0",
+    "@keystonejs/fields-wysiwyg-tinymce": "^5.2.3",
+    "@keystonejs/file-adapters": "^6.0.1",
+    "@keystonejs/keystone": "^6.0.1",
+    "apollo-boost": "^0.4.7",
+    "cloudinary-core": "^2.11.1",
+    "cross-env": "^7.0.0",
+    "dotenv": "^8.2.0",
+    "graphql-tag": "^2.10.3",
+    "intersection-observer": "^0.11.0",
+    "next-with-apollo": "^5.0.0",
+    "react": "^16.13.1",
+    "react-apollo": "^3.1.4",
+    "react-select": "^3.1.0",
+    "styled-components": "^5.1.1",
+    "styled-reset": "^4.2.2"
+  },
+  "devDependencies": {
+    "babel-plugin-styled-components": "^1.11.1",
+    "prettier": "^2.0.4"
+  }
+}
