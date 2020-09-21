@@ -6,7 +6,6 @@ import { spacing } from './config';
 const GlobalStyle = createGlobalStyle`
   :root {
     ${forEachBreakpoint(spacing, (_, space) => `--spacing: ${space}rem;`)}
-
     font-family: ${({ theme }) => theme.typography.baseFontFamily};
     font-weight: ${({ theme }) => theme.typography.baseFontWeight};
     font-size: ${({ theme }) => theme.typography.baseFontSize};

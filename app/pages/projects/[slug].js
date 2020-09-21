@@ -66,7 +66,7 @@ const Project = () => {
   return (
     <Container>
       <Link href={`/`} as={`/`}>
-        <a>>Home</a>
+        <a>Back to all Projects</a>
       </Link>
       {project && (
         <>
