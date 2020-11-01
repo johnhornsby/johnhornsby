@@ -6,7 +6,7 @@ import { ApolloProvider } from '@apollo/react-hooks';
 export default withApollo(
   ({ initialState }) => {
     return new ApolloClient({
-      uri: 'http://localhost:3000/admin/api',
+      uri: '/admin/api',
       cache: new InMemoryCache().restore(initialState || {}),
     });
   },
