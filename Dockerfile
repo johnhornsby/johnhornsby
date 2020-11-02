@@ -25,11 +25,9 @@ COPY . /usr/src/app
 ENV CLOUDINARY_CLOUD_NAME=${NAME}
 ENV CLOUDINARY_KEY=${KEY}
 ENV CLOUDINARY_SECRET=${SECRET}
-ENV NODE_ENV=development
 
 RUN npm run build
 
 EXPOSE 3000
 
-# CMD if [ "$NAME" = "defaultName" ] ; then echo Argument not provided ; else node debug.js ; fi
 CMD [ "npm", "start" ]

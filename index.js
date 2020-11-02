@@ -22,10 +22,9 @@ Object.keys(process.env).forEach(function (key) {
 
 const keystone = new Keystone({
   name: PROJECT_NAME,
-  // adapter: new MongooseAdapter({
-  //   mongoUri: 'mongodb://host.docker.internal/keystone-4-poc',
-  // }),
-  adapter: new MongooseAdapter(),
+  adapter: new MongooseAdapter({
+    mongoUri: process.env.MONGO_URI,
+  }),
   onConnect: initialiseData,
 });
 
