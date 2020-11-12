@@ -1,9 +1,8 @@
 
-ARG NODE_VERSION=12.15.0
+ARG NODE_VERSION=12.19-alpine
 
 FROM node:${NODE_VERSION} AS build
 
-ARG CACHEBUST=36
 # Declare args
 ARG NAME=defaultName
 ARG KEY=defaultKey
