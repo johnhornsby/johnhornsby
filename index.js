@@ -17,7 +17,7 @@ const ProjectSchema = require('./lists/Project');
 const PROJECT_NAME = 'Keystone 4 POC';
 
 Object.keys(process.env).forEach(function (key) {
-  console.log('env:', key, process.env[key]);
+  if (process.env[key].indexOf('npm_config') === -1) console.log('env:', key, process.env[key]);
 });
 
 const keystone = new Keystone({
