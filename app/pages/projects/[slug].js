@@ -1,4 +1,5 @@
 import React from 'react';
+import styled, { css } from 'styled-components';
 
 import gql from 'graphql-tag';
 import { useQuery } from '@apollo/react-hooks';
@@ -47,6 +48,10 @@ const QUERY = gql`
   }
 `;
 
+const ProjectTitle = styled(Title)`
+  ${({ scale }) => fontSize(scale, (_breakpoint, size) => 'font-size: min(10vw,' + size + 'px)')}
+`;
+
 const Project = () => {
   const router = useRouter();
   const { slug } = router.query;
@@ -72,9 +77,9 @@ const Project = () => {
         <>
           <Module>
             {project.title && (
-              <Title scale={'alpha'} above="12rem" below="0" lineHeight="1em">
+              <ProjectTitle scale={'alpha'} above="12rem" below="0" lineHeight="1em">
                 {project.title}
-              </Title>
+              </ProjectTitle>
             )}
 
             {hasCompletedAt && (

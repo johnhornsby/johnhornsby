@@ -3,12 +3,13 @@ import styled from 'styled-components';
 
 const TagsStyled = styled.ul`
   display: flex;
+  flex-wrap: wrap;
   list-style: none;
-  margin-top: 0.5rem;
 `;
 
 const TagStyled = styled.li`
   margin-right: 0.5rem;
+  margin-top: 0.5rem;
   padding: 0.5rem;
   font-size: 12px;
   color: ${({ theme }) => theme.colors.grey};
@@ -19,6 +20,7 @@ const TagStyled = styled.li`
 
 const LabelStyled = styled.li`
   margin-right: 0.5rem;
+  margin-top: 0.5rem;
   padding: 0.5rem;
   font-size: 12px;
   font-weight: 300;

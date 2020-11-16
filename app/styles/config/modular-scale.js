@@ -60,7 +60,9 @@ export const modularScaleValuesAcrossBreakpoints = {
   [THETA]: getModularScaleValues(THETA),
 };
 
-export const fontSize = (size) => {
+export const fontSize = (size, customRenderFontSizeFunc) => {
+  const defaultRenderFontSizeFunc = (_breakpoint, size) => `font-size: ${size}px`;
+  const renderFontSizeFunc = customRenderFontSizeFunc || defaultRenderFontSizeFunc;
   const values = modularScaleValuesAcrossBreakpoints[size];
-  return forEachBreakpoint(values, (_, size) => `font-size: ${size}px`);
+  return forEachBreakpoint(values, renderFontSizeFunc);
 };
