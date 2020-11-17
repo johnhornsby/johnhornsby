@@ -1,14 +1,18 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import Image from '../atoms/Image';
 import { wide } from '../../styles/config/aspect-ratio';
+import { below } from '../../styles/media';
 
 const spacingModifier = 0.5;
 
 const SectionStyled = styled.section`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
+  ${below.desktop(css`
+    grid-template-columns: 1fr 1fr;
+  `)}
   gap: calc(var(--spacing) * ${spacingModifier});
 `;
 

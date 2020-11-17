@@ -9,6 +9,8 @@ import withApollo from '../../lib/withApollo';
 import { getDataFromTree } from '@apollo/react-ssr';
 import Link from 'next/link';
 
+import { below } from '../../styles/media';
+
 import ImageGrid from '../../components/organism/ImageGrid';
 // import Container from '../../styles/Container';
 import Container from '../../components/atoms/Container';
@@ -49,7 +51,18 @@ const QUERY = gql`
 `;
 
 const ProjectTitle = styled(Title)`
+  margin-top: 12rem;
+  ${below.tablet(css`
+    margin-top: 4rem;
+  `)}
+
   ${({ scale }) => fontSize(scale, (_breakpoint, size) => 'font-size: min(10vw,' + size + 'px)')}
+`;
+
+const BackLink = styled.a`
+  display: block;
+  margin-top: var(--spacing);
+  text-decoration: underline;
 `;
 
 const Project = () => {
@@ -70,20 +83,20 @@ const Project = () => {
 
   return (
     <Container>
-      <Link href={`/`} as={`/`}>
-        <a>Back to all Projects</a>
+      <Link href={`/`} as={`/`} passHref>
+        <BackLink>Back to all Projects</BackLink>
       </Link>
       {project && (
         <>
           <Module>
             {project.title && (
-              <ProjectTitle scale={'alpha'} above="12rem" below="0" lineHeight="1em">
+              <ProjectTitle scale={'alpha'} below="0" lineHeight="1em">
                 {project.title}
               </ProjectTitle>
             )}
 
             {hasCompletedAt && (
-              <Title tag={5} weight="400" color={'#333'} above="0">
+              <Title tag={5} weight={400} color={'#333'} above="0">
                 {String(new Date(project.completedAt).getFullYear()).substr(2, 2)}
                 &nbsp;&nbsp;
                 {project.strap}
