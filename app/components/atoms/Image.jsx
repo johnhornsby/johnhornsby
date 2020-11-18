@@ -27,21 +27,21 @@ function getSrcset(id, width) {
 
 const Image = ({ alt, className, id }) => {
   const sizes = [
-    // '(min-width: 1600) 1920px',
-    // '(max-width: 1024) and (min-width: 1599) 1600px',
-    '(max-width: 1024px) and (min-width: 320px) 100px',
+    '(min-width: 768px) calc(.5 * 100vw)',
+    '(min-width: 1440px) calc(.333 * 100vw)',
     '100vw',
   ];
   const srcset = widths.map((w) => getSrcset(id, w));
 
   return (
     <img
-      className={className}
-      aria-label={alt}
       alt={alt}
+      aria-label={alt}
+      className={className}
+      loading="lazy"
+      sizes={sizes.join(', ')}
       src={imgStr(id)}
       srcSet={srcset.join(', ')}
-      sizes={sizes.join(', ')}
       title={alt}
     />
   );
