@@ -8,13 +8,45 @@
       "type": "node",
       "request": "launch",
       "runtimeVersion": "12.15.0",
-      "name": "Debug Start",
+      "name": "debug",
       "skipFiles": [
           "<node_internals>/**"
       ],
-      "program": "${workspaceFolder}/server.js",
+      "program": "${workspaceFolder}/node_modules/@keystonejs/keystone/bin/cli.js",
+    },
+    {
+      "name": "npm build",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "runtimeExecutable": "npm",
+      "runtimeVersion": "12.15.0",
+      "runtimeArgs": ["run", "build"]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "runtimeVersion": "12.15.0",
+      "name": "build",
+      "skipFiles": [
+          "<node_internals>/**"
+      ],
+      "program": "${workspaceFolder}/node_modules/@keystonejs/keystone/bin/cli.js",
       "args": [
-        "--staging"
+        "build"
+      ]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "runtimeVersion": "12.15.0",
+      "name": "start",
+      "skipFiles": [
+          "<node_internals>/**"
+      ],
+      "program": "${workspaceFolder}/node_modules/@keystonejs/keystone/bin/cli.js",
+      "args": [
+        "start"
       ]
     }
   ]

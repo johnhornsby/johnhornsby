@@ -37,6 +37,7 @@ export default class MyDocument extends Document {
           />
         </Head>
         <body>
+          <input id="ApolloClientUri" type="hidden" value={process.env.APOLLO_CLIENT_URI} />
           <Main />
           <NextScript />
         </body>
