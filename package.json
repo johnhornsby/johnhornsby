@@ -14,6 +14,7 @@
     "debug": "node --inspect-brk ./node_modules/@keystonejs/keystone/bin/cli.js",
     "dev": "cross-env NODE_ENV=development DISABLE_LOGGING=false keystone dev",
     "build": "cross-env NODE_ENV=production keystone build",
+    "buildDebug": "cross-env NODE_ENV=production CLOUDINARY_CLOUD_NAME=defaultName CLOUDINARY_KEY=defaultKey CLOUDINARY_SECRET=defaultSecret keystone build",
     "start": "cross-env NODE_ENV=production keystone start"
   },
   "dependencies": {

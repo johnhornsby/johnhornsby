@@ -1,6 +1,8 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 
+import { getRunTimeDotEnv } from '../lib/utils';
+
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
     const sheet = new ServerStyleSheet();
@@ -37,7 +39,7 @@ export default class MyDocument extends Document {
           />
         </Head>
         <body>
-          <input id="ApolloClientUri" type="hidden" value={process.env.APOLLO_CLIENT_URI} />
+          <input id="ApolloClientUri" type="hidden" value={getRunTimeDotEnv('APOLLO_CLIENT_URI')} />
           <Main />
           <NextScript />
         </body>
