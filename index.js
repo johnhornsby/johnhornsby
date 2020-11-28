@@ -24,6 +24,9 @@ const keystone = new Keystone({
   name: PROJECT_NAME,
   adapter: new MongooseAdapter({
     mongoUri: process.env.MONGO_URI,
+    user: process.env.MONGO_USER,
+    pass: process.env.MONGO_PASS,
+    authSource: 'admin',
   }),
   onConnect: initialiseData,
 });
