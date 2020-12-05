@@ -1,15 +1,12 @@
+import getConfig from 'next/config';
 import withApollo from 'next-with-apollo';
 import ApolloClient, { InMemoryCache } from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
 
 function getRuntimeApolloURL() {
-  if (typeof window === 'undefined') {
-    return `http://${process.env.APOLLO_SERVER_URI}`;
-  } else {
-    return `${window.location.protocol}//${
-      window.document.getElementById('ApolloClientUri').value
-    }`;
-  }
+  const { publicRuntimeConfig } = getConfig();
+  const protocol = typeof window === 'undefined' ? 'http:' : window.location.protocol;
+  return `${protocol}//${publicRuntimeConfig.apolloClientUri}`;
 }
 
 export default withApollo(
