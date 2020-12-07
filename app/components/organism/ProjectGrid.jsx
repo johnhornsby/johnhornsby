@@ -133,39 +133,41 @@ const QUERY = gql`
 const ProjectGrid = () => {
   const { loading, data } = useQuery(QUERY);
 
-  if (loading || !data) {
-    return <h1>loading...</h1>;
-  }
-
   return (
-    <ProjectsStyled>
-      {data.allProjects.map((project, index) => (
-        <ProjectStyled key={project.slug}>
-          <Link href={`/projects/[slug]`} as={`/projects/${project.slug}`} passHref>
-            <AnchorStyled>
-              <AsideStyled>
-                <TitleStyled>{project.title}</TitleStyled>
-                <StrapStyled>
-                  {String(new Date(project.completedAt).getFullYear()).substr(2, 2)}
-                  &nbsp;&nbsp;
-                  {project.strap}
-                </StrapStyled>
-              </AsideStyled>
-              {project.posterImage && (
-                <ImageWrapperStyled key={project.posterImage.image.id}>
-                  <ImageAspectRatioStyled>
-                    <ImageStyled
-                      id={project.posterImage.image.id}
-                      alt={project.posterImage.title}
-                    />
-                  </ImageAspectRatioStyled>
-                </ImageWrapperStyled>
-              )}
-            </AnchorStyled>
-          </Link>
-        </ProjectStyled>
-      ))}
-    </ProjectsStyled>
+    <div>
+      {loading || !data ? (
+        <h1>loading...</h1>
+      ) : (
+        <ProjectsStyled>
+          {data.allProjects.map((project, index) => (
+            <ProjectStyled key={project.slug}>
+              <Link href={`/projects/[slug]`} as={`/projects/${project.slug}`} passHref>
+                <AnchorStyled>
+                  <AsideStyled>
+                    <TitleStyled>{project.title}</TitleStyled>
+                    <StrapStyled>
+                      {String(new Date(project.completedAt).getFullYear()).substr(2, 2)}
+                      &nbsp;&nbsp;
+                      {project.strap}
+                    </StrapStyled>
+                  </AsideStyled>
+                  {project.posterImage && (
+                    <ImageWrapperStyled key={project.posterImage.image.id}>
+                      <ImageAspectRatioStyled>
+                        <ImageStyled
+                          id={project.posterImage.image.id}
+                          alt={project.posterImage.title}
+                        />
+                      </ImageAspectRatioStyled>
+                    </ImageWrapperStyled>
+                  )}
+                </AnchorStyled>
+              </Link>
+            </ProjectStyled>
+          ))}
+        </ProjectsStyled>
+      )}
+    </div>
   );
 };
 

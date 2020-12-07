@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import styled, { css } from 'styled-components';
 
 import gql from 'graphql-tag';
@@ -65,15 +65,18 @@ const BackLink = styled.a`
   text-decoration: underline;
 `;
 
-const Project = () => {
+const Project = (props) => {
+  const slugRef = useRef(props.router.query.slug);
   const router = useRouter();
-  const { slug } = router.query;
+  // const { slug } = router.query;
+  const slug = slugRef.current;
+  console.log('Project', props, slug);
   const { loading, data } = useQuery(QUERY, {
     variables: { slug },
   });
 
   if (loading || !data) {
-    return <h1>loading...</h1>;
+    return <div key={slug}>loading...</div>;
   }
 
   const project = data.allProjects[0];
@@ -82,53 +85,55 @@ const Project = () => {
   const hasTechnologies = !!project.technologies && !!project.technologies.length;
 
   return (
-    <Container>
-      <Link href={`/`} as={`/`} passHref>
-        <BackLink>Back to all Projects</BackLink>
-      </Link>
-      {project && (
-        <>
-          <Module>
-            {project.title && (
-              <ProjectTitle scale={'alpha'} below="0" lineHeight="1em">
-                {project.title}
-              </ProjectTitle>
+    <div key={slug}>
+      <Container>
+        <Link href={`/`} as={`/`} passHref scroll={false}>
+          <BackLink>Back to all Projects</BackLink>
+        </Link>
+        {project && (
+          <>
+            <Module>
+              {project.title && (
+                <ProjectTitle scale={'alpha'} below="0" lineHeight="1em">
+                  {project.title}
+                </ProjectTitle>
+              )}
+
+              {hasCompletedAt && (
+                <Title tag={5} weight={400} color={'#333'} above="0">
+                  {String(new Date(project.completedAt).getFullYear()).substr(2, 2)}
+                  &nbsp;&nbsp;
+                  {project.strap}
+                </Title>
+              )}
+              {hasMediums && <Tags label="Medium" tags={project.mediums} />}
+              {hasTechnologies && <Tags label="Technology" tags={project.technologies} />}
+            </Module>
+
+            {project.brief && (
+              <Module>
+                <Title tag={6}>The Brief</Title>
+                <BodyCopy content={project.brief} />
+              </Module>
             )}
 
-            {hasCompletedAt && (
-              <Title tag={5} weight={400} color={'#333'} above="0">
-                {String(new Date(project.completedAt).getFullYear()).substr(2, 2)}
-                &nbsp;&nbsp;
-                {project.strap}
-              </Title>
+            {project.images && project.images.length && (
+              <Module>
+                <Title tag={6}>Gallery</Title>
+                {project.images && project.images.length && <ImageGrid images={project.images} />}
+              </Module>
             )}
-            {hasMediums && <Tags label="Medium" tags={project.mediums} />}
-            {hasTechnologies && <Tags label="Technology" tags={project.technologies} />}
-          </Module>
 
-          {project.brief && (
-            <Module>
-              <Title tag={6}>The Brief</Title>
-              <BodyCopy content={project.brief} />
-            </Module>
-          )}
-
-          {project.images && project.images.length && (
-            <Module>
-              <Title tag={6}>Gallery</Title>
-              {project.images && project.images.length && <ImageGrid images={project.images} />}
-            </Module>
-          )}
-
-          {project.extended && (
-            <Module>
-              <Title tag={6}>Details</Title>
-              <BodyCopy content={project.extended} />
-            </Module>
-          )}
-        </>
-      )}
-    </Container>
+            {project.extended && (
+              <Module>
+                <Title tag={6}>Details</Title>
+                <BodyCopy content={project.extended} />
+              </Module>
+            )}
+          </>
+        )}
+      </Container>
+    </div>
   );
 };
 
