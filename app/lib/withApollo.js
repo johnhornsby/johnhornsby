@@ -4,9 +4,13 @@ import ApolloClient, { InMemoryCache } from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
 
 function getRuntimeApolloURL() {
-  const { publicRuntimeConfig } = getConfig();
-  const protocol = typeof window === 'undefined' ? 'http:' : window.location.protocol;
-  return `${protocol}//${publicRuntimeConfig.apolloClientUri}`;
+  const { publicRuntimeConfig, serverRuntimeConfig } = getConfig();
+  if (typeof window === 'undefined') {
+    return `http://${serverRuntimeConfig.apolloClientUri}`;
+  } else {
+    const protocol = window.location.protocol;
+    return `${protocol}//${publicRuntimeConfig.apolloClientUri}`;
+  }
 }
 
 export default withApollo(
