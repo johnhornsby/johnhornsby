@@ -9,12 +9,12 @@ module.exports = {
   serverRuntimeConfig: {
     apolloClientUri: process.env.APOLLO_SERVER_URI,
   },
-  webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
-    // Note: we provide webpack above so you should not `require` it
-    // Perform customizations to webpack config
-    config.plugins.push(new OptimizePlugin());
+  // webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
+  //   // Note: we provide webpack above so you should not `require` it
+  //   // Perform customizations to webpack config
+  //   config.plugins.push(new OptimizePlugin());
 
-    // Important: return the modified config
-    return config;
-  },
+  //   // Important: return the modified config
+  //   return config;
+  // },
 };
