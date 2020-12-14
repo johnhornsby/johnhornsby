@@ -1,7 +1,7 @@
-export const GTMPageView = (url) => {
+export const gtmPageView = (url) => {
   const pageEvent = {
-      event: 'pageview',
-      page: url,
+    event: 'pageview',
+    page: url,
   };
 
   if (typeof window !== 'undefined') {

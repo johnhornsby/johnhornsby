@@ -83,7 +83,7 @@ const Project = () => {
 
   return (
     <Container>
-      <Link href={`/`} as={`/`} passHref>
+      <Link href={`/`} as={`/`} passHref scroll={false}>
         <BackLink>Back to all Projects</BackLink>
       </Link>
       {project && (

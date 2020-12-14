@@ -5,15 +5,27 @@ import { ThemeProvider } from 'styled-components';
 import { Reset } from 'styled-reset';
 import GlobalStyle from '../styles/GlobalStyle';
 import theme from '../styles/config';
-import { GTMPageView } from '../lib/gtm';
+import { gtmPageView } from '../lib/gtm';
+import { storeScrollTop, restoreScrollTop } from '../lib/persistentScroll';
 
 export default class MyApp extends App {
+  handleRouteChangeComplete = (url) => {
+    gtmPageView(url);
+    restoreScrollTop(url);
+  };
+
+  handleRouteChangeStart = (url) => {
+    storeScrollTop(Router.asPath); // store current route
+  };
+
   componentDidMount() {
-    const handleRouteChange = (url) => GTMPageView(url);
-    Router.events.on('routeChangeComplete', handleRouteChange);
-    return () => {
-      Router.events.off('routeChangeComplete', handleRouteChange);
-    };
+    Router.events.on('routeChangeStart', this.handleRouteChangeStart);
+    Router.events.on('routeChangeComplete', this.handleRouteChangeComplete);
+  }
+
+  componentWillUnmount() {
+    Router.events.off('routeChangeStart', this.handleRouteChangeStart);
+    Router.events.off('routeChangeComplete', this.handleRouteChangeComplete);
   }
 
   render() {
